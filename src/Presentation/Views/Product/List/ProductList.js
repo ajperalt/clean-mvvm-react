@@ -6,7 +6,7 @@ import DI from '../../../../DI/ioc'
 
 export default function ProductList() {
     let navigate = useNavigate();
-    const { products, getProducts } = DI.resolve("ProductListViewModel")
+    const { products, getProducts, productDetail,findProductDetail} = DI.resolve("ProductListViewModel")
 
     useEffect(() => {
         getProducts()
@@ -18,7 +18,7 @@ export default function ProductList() {
                 <h2>Product List</h2>
                 <Button title={"New"} onClick={() => navigate(`/product/new`)} />
             </div>
-            <List data={products} onRowClick={(id) => navigate(`/product/detail/${id}`)} />
+            <List data={products} onRowClick={(id) => {navigate(`/product/detail/${id}`); findProductDetail(id);}} />
         </div>
     );
 }
